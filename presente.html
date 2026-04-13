@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário!</title>
+    
+    <!-- Tailwind CSS (Carregado via CDN para facilitar no GitHub Pages) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome (Para os Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuração extra do Tailwind e Estilos Customizados -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: sans-serif; }
+        
+        ::selection {
+            background-color: #eab308; /* yellow-500 */
+            color: black;
+        }
+
+        .bg-stars {
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        .wall-texture {
+            background-color: #3b2f2f;
+            background-image: 
+                linear-gradient(335deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 40%),
+                linear-gradient(45deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%);
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+        }
+
+        .road-anim {
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 40px,
+                rgba(255,255,255,0.5) 40px,
+                rgba(255,255,255,0.5) 80px
+            );
+            animation: moveRoad 2s linear infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes moveRoad {
+            from { background-position: 0 0; }
+            to { background-position: 0 80px; }
+        }
+
+        .gold-text {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        
+        .modal-animate {
+            animation: bounceIn 0.5s ease-out forwards;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d5db; /* cinza claro */
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-neutral-950 text-white min-h-screen overflow-x-hidden">
+
+    <!-- NAVEGAÇÃO -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 font-bold text-2xl tracking-widest text-white flex items-center gap-2">
+                    <span class="gold-text">FELIZ ANIVERSÁRIO</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#tatakae" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors text-yellow-400 bg-white/5" data-target="tatakae">
+                        <i class="fa-solid fa-fire"></i> Everton
+                    </a>
+                    <a href="#cosmo" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-300 hover:text-white hover:bg-white/10" data-target="cosmo">
+                        <i class="fa-solid fa-star"></i> Cosmo
+                    </a>
+                    <a href="#maquina" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-300 hover:text-white hover:bg-white/10" data-target="maquina">
+                        <i class="fa-solid fa-motorcycle"></i> Máquina
+                    </a>
+                    <a href="#horizonte" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-300 hover:text-white hover:bg-white/10" data-target="horizonte">
+                        <i class="fa-solid fa-map"></i> Horizonte
+                    </a>
+                    <a href="#cartas" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-300 hover:text-white hover:bg-white/10" data-target="cartas">
+                        <i class="fa-solid fa-heart"></i> O Santuário
+                    </a>
+                    <a href="#galeria" class="nav-link flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-300 hover:text-white hover:bg-white/10" data-target="galeria">
+                        <i class="fa-solid fa-camera"></i> Momentos
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-xl border-b border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#tatakae" onclick="toggleMenu()" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-yellow-400 bg-white/5">Everton (AOT)</a>
+                <a href="#cosmo" onclick="toggleMenu()" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Sétimo Sentido (CDZ)</a>
+                <a href="#maquina" onclick="toggleMenu()" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">A Máquina (Moto)</a>
+                <a href="#horizonte" onclick="toggleMenu()" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Liberdade (Viagem)</a>
+                <a href="#cartas" onclick="toggleMenu()" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Santuário (Cartas)</a>
+                <a href="#galeria" onclick="toggleMenu()" class="block w-full text-left px-3 py-4 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10">Momentos (Galeria)</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SEÇÃO 1: ATTACK ON TITAN (TATAKAE) -->
+    <section id="tatakae" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden wall-texture">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-red-900/30 to-neutral-950"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+            <p class="text-red-500 font-bold tracking-[0.3em] uppercase text-sm md:text-xl mb-4 animate-pulse">
+                O Início de uma Nova Temporada
+            </p>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter mb-6 drop-shadow-[0_5px_15px_rgba(220,38,38,0.5)]">
+                Everton.
+            </h1>
+            <div class="w-24 h-1 bg-red-600 mb-8"></div>
+            <p class="text-xl md:text-3xl text-gray-300 font-light max-w-2xl leading-relaxed">
+                Avance, lute e conquiste os seus sonhos. Você é o protagonista da sua própria história épica.
+            </p>
+            <a href="#cosmo" class="mt-16 animate-bounce text-white/50 hover:text-white transition-colors flex flex-col items-center gap-2">
+                <span class="text-sm tracking-widest uppercase">Avançar</span>
+                <i class="fa-solid fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: CAVALEIROS DO ZODÍACO (COSMO) -->
+    <section id="cosmo" class="relative min-h-screen flex items-center justify-center bg-neutral-950 overflow-hidden">
+        <div class="absolute inset-0 bg-stars opacity-60"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+            <i class="fa-solid fa-star text-yellow-500 text-6xl mb-8 drop-shadow-[0_0_20px_rgba(234,179,8,1)]"></i>
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 gold-text uppercase tracking-wider">
+                Eleve seu Cosmo
+            </h2>
+            <p class="text-xl md:text-2xl text-yellow-100/80 font-light max-w-3xl leading-relaxed italic">
+                "Não existe milagre que não possa ser alcançado por aquele que desperta o seu sétimo sentido."
+            </p>
+            <div class="mt-12 p-[1px] bg-gradient-to-r from-transparent via-yellow-500 to-transparent w-full max-w-md">
+                <div class="bg-black/50 backdrop-blur-sm py-4 px-8 text-lg text-yellow-200/90 font-medium tracking-widest">
+                    MAIS UM ANO DE LUZ E FORÇA
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: MOTOS (A MÁQUINA) -->
+    <section id="maquina" class="relative min-h-screen flex items-center justify-center bg-zinc-950 overflow-hidden">
+        <div class="absolute inset-0">
+           <img 
+            src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=2000" 
+            alt="Motocicleta épica" 
+            class="w-full h-full object-cover opacity-30 object-center mix-blend-luminosity"
+          />
+          <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-neutral-950 via-transparent to-neutral-950"></div>
+        </div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="text-left space-y-8">
+                <div class="inline-flex items-center gap-3 px-4 py-2 border border-blue-500/30 rounded-full bg-blue-500/10 text-blue-400">
+                    <i class="fa-solid fa-motorcycle text-xl"></i>
+                    <span class="uppercase tracking-widest text-sm font-bold">A Máquina Perfeita</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-black text-white leading-tight">
+                    A PAIXÃO PELA <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-200">
+                        VELOCIDADE
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-400 leading-relaxed max-w-lg">
+                    Assim como um motor bem calibrado, sua energia e seu foco te levam a qualquer lugar. Acelere fundo atrás do que te faz feliz.
+                </p>
+                <div class="flex gap-4 pt-4">
+                    <div class="w-16 h-1 bg-blue-500"></div>
+                    <div class="w-8 h-1 bg-blue-500/50"></div>
+                    <div class="w-4 h-1 bg-blue-500/20"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: VIAGEM DE MOTO (O HORIZONTE) -->
+    <section id="horizonte" class="relative min-h-screen flex items-center justify-center bg-black overflow-hidden perspective-[1000px]">
+        <div class="absolute inset-0 bg-gradient-to-b from-orange-900/40 via-purple-900/40 to-black"></div>
+        
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200vw] h-[50vh] bg-zinc-900 transform origin-bottom rotate-x-[60deg]">
+           <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-4 road-anim"></div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+
+        <div class="relative z-10 text-center px-4 flex flex-col items-center max-w-3xl">
+            <i class="fa-solid fa-wind text-orange-400 text-6xl mb-6 drop-shadow-lg"></i>
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6 tracking-wide drop-shadow-2xl">
+                O HORIZONTE É SEU
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-300 font-light drop-shadow-md">
+                A vida é como uma estrada aberta. Não importa o destino, o mais importante é aproveitar a viagem, sentir o vento e ser livre. 
+            </p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: AS CARTAS (O SANTUÁRIO) -->
+    <section id="cartas" class="relative min-h-screen flex items-center justify-center bg-neutral-900 overflow-hidden py-24">
+        <div class="absolute inset-0 flex items-center justify-center opacity-5">
+            <i class="fa-solid fa-heart text-[800px]"></i>
+        </div>
+        
+        <div class="relative z-10 w-full max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                    O Seu Santuário
+                </h2>
+                <p class="text-xl text-gray-400">
+                    Sua família, sua base. Escolha uma carta para ler.
+                </p>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Botão Carta 1: PAI -->
+                <button onclick="openModal('mae')" class="group relative p-8 rounded-2xl bg-gradient-to-br from-green-200 to-green-500 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] text-left focus:outline-none focus:ring-4 focus:ring-white/50 w-full">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                    <div class="relative z-10 flex flex-col h-full justify-between items-center text-center">
+                        <i class="fa-solid fa-envelope text-5xl text-white/80 mb-6 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Carta da</h3>
+                            <p class="text-3xl font-black text-white/90 uppercase tracking-widest">Mamãe</p>
+                        </div>
+                        <span class="mt-8 text-sm font-medium text-white/60 group-hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            Clique para abrir
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Botão Carta 2: MÃE -->
+                <button onclick="openModal('mamae')" class="group relative p-8 rounded-2xl bg-gradient-to-br from-red-600 to-red-400 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] text-left focus:outline-none focus:ring-4 focus:ring-white/50 w-full">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                    <div class="relative z-10 flex flex-col h-full justify-between items-center text-center">
+                        <i class="fa-solid fa-envelope text-5xl text-white/80 mb-6 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Carta da</h3>
+                            <p class="text-3xl font-black text-white/90 uppercase tracking-widest">Mamãe</p>
+                        </div>
+                        <span class="mt-8 text-sm font-medium text-white/60 group-hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            Clique para abrir
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Botão Carta 3: IRMÃ -->
+                <button onclick="openModal('irma')" class="group relative p-8 rounded-2xl bg-gradient-to-br from-blue-300 to-blue-900 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] text-left focus:outline-none focus:ring-4 focus:ring-white/50 w-full">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                    <div class="relative z-10 flex flex-col h-full justify-between items-center text-center">
+                        <i class="fa-solid fa-envelope text-5xl text-white/80 mb-6 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Carta da</h3>
+                            <p class="text-3xl font-black text-white/90 uppercase tracking-widest">Maninha</p>
+                        </div>
+                        <span class="mt-8 text-sm font-medium text-white/60 group-hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            Clique para abrir
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Botão Carta 4: IRMÃ -->
+                <button onclick="openModal('maninha')" class="group relative p-8 rounded-2xl bg-gradient-to-br from-pink-500 to-pink-700 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] text-left focus:outline-none focus:ring-4 focus:ring-white/50 w-full">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                    <div class="relative z-10 flex flex-col h-full justify-between items-center text-center">
+                        <i class="fa-solid fa-envelope text-5xl text-white/80 mb-6 group-hover:scale-110 transition-transform"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Carta da</h3>
+                            <p class="text-3xl font-black text-white/90 uppercase tracking-widest">Maninha</p>
+                        </div>
+                        <span class="mt-8 text-sm font-medium text-white/60 group-hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            Clique para abrir
+                        </span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="relative min-h-screen bg-neutral-950 py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-black text-white mb-4">
+                    MEMÓRIAS EM <span class="gold-text">HD</span>
+                </h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mb-6"></div>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Alguns registros das aventuras, das risadas e de todos os caminhos percorridos até aqui.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1327061746149756979/1361797850941489224/lima2.png?ex=69dea114&is=69dd4f94&hm=ee68a2d267ba8ec65fc76645c54950d60077467dc52c59c7fde596e9c19ae84c&=&format=webp&quality=lossless&width=1506&height=797" alt="Momento 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1370749025720209458/1370944969480601701/image.png?ex=69de49bf&is=69dcf83f&hm=c949d53f0f48a8dd60b08532937bae2786de6a576721130e9061811bdbd88e12&=&format=webp&quality=lossless&width=1469&height=797" alt="Momento 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1327061746149756979/1352102819414409327/112.png?ex=69de4ba1&is=69dcfa21&hm=1a4662a036e46ad89b502bb0d5f33a019fe2832093776f196b4add94f5bf2f1c&=&format=webp&quality=lossless&width=451&height=374" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1214254845821980672/1229523514034360381/image.png?ex=69de9e81&is=69dd4d01&hm=aa687823a4d8347961befd130e277bbdb27f7b16ff61abba5c7da242f00088a4&=&format=webp&quality=lossless&width=1302&height=797" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1214254845821980672/1227092951709126677/image.png?ex=69de589d&is=69dd071d&hm=7e09a2d5ecbe95414416504449b313c796db35ca67de9328ecd22cc61980ad68&=&format=webp&quality=lossless&width=491&height=916" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1400507517380984864/1400507952850272387/weFEW.png?ex=69de642c&is=69dd12ac&hm=776e5f5accd7eacdd8da9a18a215f746c00b22d9d4b31317c1dd77ceb1213347&=&format=webp&quality=lossless&width=1435&height=797" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1400507517380984864/1400507947897065532/ewr.png?ex=69de642a&is=69dd12aa&hm=0f75729b26978da0024850074a7b544dcd816a42e9e8e0ed664b793353346f9c&=&format=webp&quality=lossless&width=1435&height=797" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1400507517380984864/1400507629884936243/7525872.png?ex=69de63df&is=69dd125f&hm=71c774b36d5f9cc1cfe341bc2cbd9a35577e3d9ce6e0788ec318ef772224d0e1&=&format=webp&quality=lossless&width=1416&height=797" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1214254845821980672/1216897719898214460/image.png?ex=69de2b91&is=69dcda11&hm=92425fec73870f32444fc71ecc538e1c1501c4fef266b3ff9fc7161b20b857d4&=&format=webp&quality=lossless&width=1267&height=908" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1214254845821980672/1235325338247106580/image.png?ex=69dea1df&is=69dd505f&hm=f3b3f00ab7441f4bb73b3380a7b191ca4f2cdcc75195affed26b0ee894049f5c&=&format=webp&quality=lossless&width=524&height=713" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1370749025720209458/1370943965846835200/image.png?ex=69de48d0&is=69dcf750&hm=848246772a588a67a65aef24976ea8a3944b0dddecc7862cb8517dd71c57618e&=&format=webp&quality=lossless&width=874&height=922" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl aspect-square bg-neutral-900 border border-white/5">
+                    <img src="https://media.discordapp.net/attachments/1327061746149756979/1354627905807712396/image.png?ex=69de40cc&is=69dcef4c&hm=dd93b87029c7284cac8d9f7b02c054403241f1e6d5af4946b0a4d02bfdd6e1be&=&format=webp&quality=lossless&width=1463&height=797" alt="Momento 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <p class="text-white font-medium">Nosso Principe 💕</p>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+
+        <div class="absolute top-0 right-0 w-96 h-96 bg-yellow-500/5 rounded-full blur-[100px] -z-10"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] -z-10"></div>
+    </section>
+
+    <!-- MODAL DA CARTA (ESCONDIDO POR PADRÃO) -->
+    <div id="letter-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        
+        <div class="relative w-full max-w-2xl bg-[#fdf8f5] text-neutral-800 rounded-xl shadow-2xl p-8 md:p-12 modal-animate flex flex-col max-h-[90vh]">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-neutral-400 hover:text-neutral-800 transition-colors bg-neutral-200/50 hover:bg-neutral-300 rounded-full focus:outline-none z-20">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            
+            <div class="border-b border-neutral-300 pb-6 text-center flex-shrink-0">
+                <span id="modal-author" class="uppercase tracking-widest text-sm text-neutral-500 font-bold">
+                    De: Autor
+                </span>
+                <h3 id="modal-title" class="text-3xl font-serif mt-2 text-neutral-900">
+                    Título da Carta
+                </h3>
+            </div>
+            
+            <div class="prose prose-lg max-w-none overflow-y-auto pr-2 mt-6 custom-scrollbar">
+                <p id="modal-content" class="text-xl font-serif leading-relaxed text-neutral-700 whitespace-pre-line text-center md:text-left">
+                    Conteúdo da carta vai aqui.
+                </p>
+                
+                <div class="pt-8 text-center text-neutral-400">
+                    <i class="fa-solid fa-heart text-2xl opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS (LÓGICA DO SITE) -->
+    <script>
+        /* -------------------------------------------------------------------------
+           1. TEXTOS DAS CARTAS (EDITE AQUI!)
+           Substitua os textos de "title" e "content" pelos textos reais.
+           Use \n para quebrar linha se precisar.
+        ------------------------------------------------------------------------- */
+        const lettersData = {
+            mae: {
+                author: "Larinha",
+                title: "",
+                content: "Lima meu filho, vou começar sendo sincera kkk às vezes eu sou chata, implico, brigo… mas no fim das contas eu gosto de cuidar de quem eu amo e você com certeza entrou nessa lista. eu não saberia que uma relação de web mãe e web filho que surgiu no de repente pq a gente não se conhecia tão bem, ia virar algo tão especial... mesmo sem RP, o carinho continua, cresce… e eu tive a sorte de conhecer a pessoa incrível que você é de verdade. nunca tive um web filho que prestasse, muito menos um que fosse meu amigo pq não é qualquer um que eu faço questão de levar no coração. eu espero de coração que essa amizade dure muito, muito tempo mesmo. feliz aniversário, Everton Lima Limão!!!!! que Deus te abençoe muito, te dê saúde, paz e sucesso inclusive nos cálculos aí, porque como bom contador, você já deve estar tentando mudar os numeros da sua idade ai kkkk te amoo você merece tudo de bom 💚 🍋‍🟩"
+            },
+            mamae: {
+                author: "Chacha",
+                title: "",
+                content: "oi meu amor, primeiro de tudo queria te desejar um ótimo aniversario e espero que esteja comemorando da melhor forma possível, eu tentei disfarçar o dia todo pra ver como seria sua reação, mas eu não poderia fingir por muito tempo que é só mais um dia normal, eu te conheci totalmente sem despretensão como quem quer nada com nada, em uma cidade , em um jogo que nunca achei que iria jogar sinceramente, pra ser sincera com você eu nunca achei que ia ter família em um lugar como aquele, já havia me decepcionado em outra cidade e fui pra Flow pra tentar um recomeço e de verdade foi a melhor coisa que eu fiz, você e seus irmãos por mais que uns são mais loucos que outros e você sabe disso me mostraram que era possível jogar e ter conexões totalmente reais, nunca achei que ia ter um web neto que eu sempre tive medo kkkkk você sabe o quanto eu eu não queriam que me chamassem de vó, mas depois tudo que aconteceu e você virar pra mim e pedir pra ser meu filho, foi uma das minhas melhores escolhas, mesmo quando a gente se afastou por conta de cidades de diferentes você nunca deixou de amar nem a mim e nem a nossa família e isso me deixa muito feliz, a gente já passou muito perrengue junto cada doida, uma medica e um bombeiro era um perigo na cidade kkkkkkk eu só quero que saiba que eu te amo muito, obrigada por cada aventura, cada momento, cada lembrança que fica aqui guardada na memoria, cada capotada de caminhão, cada ensinamento, cada conselho, você ainda continua sendo o mais sábio da família porque eu e seu tio nunca tivemos juízo e você sempre lá para apoiar nossas dodeiras. Eu te amo muito meu amor e espero que seja sempre essa pessoa maravilhosa que você é. Beijos da sua mamãe 😍❤️😘💕"
+            },
+            irma: {
+                author: "Laylla",
+                title: "",
+                content: "Everton, é a sua irmãzinha do coração passando aqui… Hoje é o seu dia, mas quem ganhou o presente fui eu — por ter você na minha vida. Quero te lembrar do cara incrível que você é. Um cara forte, leal, verdadeiro… daqueles raros, sabe? Você é o irmão que eu sempre pedi a Deus. Mesmo sem carregar o meu sangue, tem um lugar só seu dentro de mim — um lugar que ninguém nunca vai ocupar. Você me entende como ninguém, esteve comigo nos meus piores e melhores momentos, e nunca soltou minha mão. Eu sou imensamente grata por cada conselho, cada risada, cada momento que a gente compartilha. E quero que você nunca esqueça: assim como você sempre esteve por mim, eu sempre vou estar por você. Sempre. E aí de quem tentar atravessar o nosso caminho… porque nós somos fechados, juntos, e ninguém quebra isso. Eu te amo, meu irmão. Feliz aniversário 💖✨"
+            },
+            maninha: {
+                author: "Beise",
+                title: "",
+                content: "Hj é do dia dele!! Dessa pessoa incrível que eu tenho o prazer de chamar de 'manin'. Feliz aniversário princeso, te  desejo tudo de mais lindo q esta vida possa te oferecer, muita saúde, muitos rolês de moto, paz, alegria, realizações de sonhos e tudo de bom. Que Deus continue te abençoando sempre e guiando seus passos, Continue sendo essa pessoa maravilhosa q vc é. Obg por me tirar altas risadas, me desculpe pelas fechadas no euro truck (vc q passou na frente), e pelas vezes q te assassinei no five (tinha motivo). Te amo maninmmm🫶🫶"
+            },
+        };
+
+        /* -------------------------------------------------------------------------
+           2. LÓGICA DO MODAL (ABRIR E FECHAR CARTAS)
+        ------------------------------------------------------------------------- */
+        function openModal(personId) {
+            const data = lettersData[personId];
+            
+            // Preenche os dados
+            document.getElementById('modal-author').innerText = "De: " + data.author;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-content').innerText = data.content;
+            
+            // Mostra o modal (Troca classe 'hidden' por 'flex')
+            const modal = document.getElementById('letter-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Previne o scroll da página enquanto o modal está aberto
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            // Esconde o modal
+            const modal = document.getElementById('letter-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // Libera o scroll da página
+            document.body.style.overflow = 'auto';
+        }
+
+        /* -------------------------------------------------------------------------
+           3. MENU RESPONSIVO (MOBILE)
+        ------------------------------------------------------------------------- */
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        /* -------------------------------------------------------------------------
+           4. SCROLL SPY (DESTACA O MENU AO ROLAR A PÁGINA)
+        ------------------------------------------------------------------------- */
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Ajuste de offset para o menu fixo
+                if (window.scrollY >= sectionTop - 250) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                // Classes base (desativado)
+                link.classList.remove('text-yellow-400', 'bg-white/5');
+                link.classList.add('text-gray-300');
+                
+                // Se for o link ativo
+                if (link.getAttribute('data-target') === current) {
+                    link.classList.remove('text-gray-300');
+                    link.classList.add('text-yellow-400', 'bg-white/5');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
